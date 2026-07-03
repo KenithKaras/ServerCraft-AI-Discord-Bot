@@ -1,0 +1,17 @@
+{
+  "name": "ai-discord-server-setup-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot to automatically setup Discord servers using AI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@google/generative-ai": "^0.21.0",
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "openai": "^4.71.0"
+  }
+}
