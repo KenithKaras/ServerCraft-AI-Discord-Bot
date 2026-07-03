@@ -28,7 +28,9 @@ async function generateServerStructure(promptText) {
         if (provider === 'groq') {
             const groqOpenai = new OpenAI({ 
                 baseURL: "https://api.groq.com/openai/v1",
-                apiKey: process.env.GROQ_API_KEY 
+                apiKey: process.env.GROQ_API_KEY,
+                timeout: 30000,
+                maxRetries: 2
             });
             const groqModel = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 
@@ -41,6 +43,7 @@ async function generateServerStructure(promptText) {
                         { role: 'user', content: promptText }
                     ],
                     temperature: 0.1,
+                    stream: false,
                 });
                 
                 const content = response.choices[0].message.content;
@@ -53,7 +56,9 @@ async function generateServerStructure(promptText) {
                 
                 const openRouterOpenai = new OpenAI({ 
                     baseURL: "https://openrouter.ai/api/v1",
-                    apiKey: process.env.OPENROUTER_API_KEY 
+                    apiKey: process.env.OPENROUTER_API_KEY,
+                    timeout: 30000,
+                    maxRetries: 2
                 });
                 const orModel = process.env.OPENROUTER_MODEL || "google/gemma-3-27b-it:free";
                 
@@ -65,6 +70,7 @@ async function generateServerStructure(promptText) {
                             { role: 'user', content: promptText }
                         ],
                         temperature: 0.1,
+                        stream: false,
                     });
                     
                     const content = response.choices[0].message.content;

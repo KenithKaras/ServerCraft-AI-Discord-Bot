@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Discord bot to automatically setup Discord servers using AI",
   "main": "index.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "deploy": "node deploy-commands.js"
@@ -12,6 +15,6 @@
     "@google/generative-ai": "^0.21.0",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "openai": "^4.71.0"
+    "openai": "^6.45.0"
   }
 }
