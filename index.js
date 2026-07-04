@@ -51,19 +51,20 @@ client.on(Events.InteractionCreate, async interaction => {
     } else if (interaction.isButton()) {
         // Handle confirm/cancel buttons
         try {
-            const commandName = interaction.customId.split('_')[0]; 
-            const command = client.commands.find(cmd => cmd.handleButton && typeof cmd.handleButton === 'function');
-            if (command) {
-                await command.handleButton(interaction);
+            for (const command of client.commands.values()) {
+                if (command.handleButton && typeof command.handleButton === 'function') {
+                    await command.handleButton(interaction);
+                }
             }
         } catch (error) {
             console.error(error);
         }
     } else if (interaction.isStringSelectMenu()) {
         try {
-            const command = client.commands.get('setup-template');
-            if (command) {
-                await command.handleSelect(interaction);
+            for (const command of client.commands.values()) {
+                if (command.handleSelect && typeof command.handleSelect === 'function') {
+                    await command.handleSelect(interaction);
+                }
             }
         } catch (error) {
             console.error(error);
